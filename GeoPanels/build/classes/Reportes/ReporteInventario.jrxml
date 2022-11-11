@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ReporteInventario" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4c4558cb-4bed-423c-a206-1c13b959add7">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_establecimiento" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nombre_establecimiento" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     n."id_inventariado",
+     n."cantidad",
+     n."fecha_ingreso",
+     e."nombre_establecimiento",
+     p."nombre_producto"
+FROM
+     "Inventario" n,
+     "establecimiento" e,
+     "producto" p
+WHERE
+     n.id_establecimiento = e.id_establecimiento
+ AND n.id_producto = p.id_producto
+And e.id_establecimiento = $P!{id_establecimiento}]]>
+	</queryString>
+	<field name="id_inventariado" class="java.lang.Integer"/>
+	<field name="cantidad" class="java.lang.Integer"/>
+	<field name="fecha_ingreso" class="java.lang.String"/>
+	<field name="nombre_establecimiento" class="java.lang.String"/>
+	<field name="nombre_producto" class="java.lang.String"/>
+	<variable name="cantidad_1" class="java.lang.Integer" resetType="Column" calculation="First">
+		<variableExpression><![CDATA[$F{cantidad}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="79" backcolor="#333333" uuid="d7009e07-d3f5-42f8-a6a2-a42d1ab00dc6"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="555" height="79" uuid="e29ef17e-48d5-41d7-a157-630bba2190ea"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Candara" size="36"/>
+				</textElement>
+				<text><![CDATA[Reporte Inventario]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="37" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="2" width="555" height="20" backcolor="#666666" uuid="3da98fbd-b041-42ee-bc6d-401732e803ff"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="2" width="100" height="20" uuid="5cd3c011-f17d-476e-acec-23a6081890e9"/>
+				<text><![CDATA[cantidad]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="118" y="2" width="100" height="20" uuid="4ee7f303-3800-422b-b1b7-7283ba252fd6"/>
+				<text><![CDATA[fecha_ingreso]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="262" y="2" width="141" height="20" uuid="0b73eb72-149f-423b-8cd3-ff24e6c6cb42"/>
+				<text><![CDATA[nombre_establecimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="428" y="2" width="127" height="20" uuid="0f205e09-4078-4a72-9602-8d15e5a16d3a"/>
+				<text><![CDATA[nombre_producto]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="5ef2b830-b2a4-4b8f-b06f-47383e2b7a07"/>
+				<textFieldExpression><![CDATA[$F{cantidad}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="118" y="0" width="100" height="20" uuid="adc70956-5991-43c8-9b85-9e13812e2613"/>
+				<textFieldExpression><![CDATA[$F{fecha_ingreso}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="262" y="0" width="141" height="20" uuid="fd9d9ff2-df17-494c-88d9-6e6f94b7c7ea"/>
+				<textFieldExpression><![CDATA[$F{nombre_establecimiento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="428" y="0" width="127" height="20" uuid="42a95213-61b6-4cec-9738-b3fa27f360cb"/>
+				<textFieldExpression><![CDATA[$F{nombre_producto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="22" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

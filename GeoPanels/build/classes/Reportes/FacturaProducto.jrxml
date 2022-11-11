@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="550a6354-87e4-4187-80cd-6bb0f80ea9cd">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_factura" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\acer\\Downloads\\PartePardo\\PartePardo\\para Pardo\\Expo (1)\\Expo\\GeoPanelsTerminado\\GeoPanels\\src\\Reportes\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select f.id_factura, f.subtotal, f.total, Concat(c.nombre_cliente,' ', c.apellido_cliente)As Cliente,
+concat(ip.impuesto,' $',ip.precio)as impuesto,
+CONCAT(tm.tipo_mantenimiento,' $',tm.costo )AS instalacion, p.MontoRecibo,p.MontoRetorno
+from Factura_Producto f, Cliente c, Impuestos_producto ip, Tipo_mantenimiento tm, Pago p
+where f.id_cliente = c.id_cliente AND tm.id_tipo_mantenimiento = f.id_costo AND ip.id_impuesto = f.id_impuesto AND f.id_pago = p.id_pago AND f.id_factura = $P{id_factura}]]>
+	</queryString>
+	<field name="id_factura" class="java.lang.Integer"/>
+	<field name="subtotal" class="java.math.BigDecimal"/>
+	<field name="total" class="java.math.BigDecimal"/>
+	<field name="Cliente" class="java.lang.String"/>
+	<field name="impuesto" class="java.lang.String"/>
+	<field name="instalacion" class="java.lang.String"/>
+	<field name="MontoRecibo" class="java.math.BigDecimal"/>
+	<field name="MontoRetorno" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="79" backcolor="#1B2329" uuid="166d4fe3-ae77-4b25-9e51-1fe092dd96e8"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="159" height="79" forecolor="#FFFFFF" uuid="f911e287-28cd-47af-a0c2-541acb41be2d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="24"/>
+				</textElement>
+				<text><![CDATA[GeoPanels]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="321" y="0" width="100" height="20" forecolor="#FFFFFF" uuid="530483db-d1df-4b95-8dcf-1a02b76a1981"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="14"/>
+				</textElement>
+				<text><![CDATA[N° Factura:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="321" y="59" width="100" height="20" forecolor="#FFFFFF" uuid="cb22717d-b9c4-4d8f-82e1-1eae2ce445f5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="14"/>
+				</textElement>
+				<text><![CDATA[Fecha:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="321" y="20" width="100" height="20" forecolor="#FFFFFF" uuid="e569ad79-e8d1-46bd-8dd3-7b65f586d628"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="14"/>
+				</textElement>
+				<text><![CDATA[Cliente:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="421" y="20" width="123" height="20" forecolor="#FFFFFF" uuid="0050b297-62a5-4f1b-affb-3938a457ff00"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="421" y="0" width="123" height="20" forecolor="#FFFFFF" uuid="ed0e6ad3-c6fe-448b-93b3-6591f0527b00"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id_factura}]]></textFieldExpression>
+			</textField>
+			<textField pattern="d/M/yyyy">
+				<reportElement x="421" y="59" width="123" height="20" forecolor="#FFFFFF" uuid="e170620e-7cac-4dc7-862a-d4aa7fab5ee6"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="159" height="35" forecolor="#1B2329" uuid="c3106558-6553-429e-b6a3-56dd5d32516f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="16"/>
+				</textElement>
+				<text><![CDATA[Descripción:]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="189" splitType="Stretch">
+			<subreport>
+				<reportElement x="0" y="0" width="555" height="189" uuid="f97f24a1-6ecd-4ee6-b733-90ce5fa808b6"/>
+				<subreportParameter name="id_factura">
+					<subreportParameterExpression><![CDATA[$F{id_factura}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\Users\\acer\\Desktop\\PartePardo (1)\\PartePardo\\PartePardo\\para Pardo\\Expo (1)\\Expo\\GeoPanelsTerminado\\GeoPanels\\src\\Reportes\\DetalleCarrito.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</columnHeader>
+	<columnFooter>
+		<band height="146" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="40" width="78" height="35" forecolor="#1B2329" uuid="64abb9dd-ada9-45af-8171-e4f89605119a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="16"/>
+				</textElement>
+				<text><![CDATA[Subtotal : $]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="75" width="78" height="35" forecolor="#1B2329" uuid="88c467ef-9b65-45eb-8512-7bd9216c62f5"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="16"/>
+				</textElement>
+				<text><![CDATA[Impuesto: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="110" width="78" height="35" forecolor="#1B2329" uuid="4f9df255-47ad-44ae-bb21-38434cd1828a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="16"/>
+				</textElement>
+				<text><![CDATA[Instalación:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="352" y="40" width="83" height="35" forecolor="#1B2329" uuid="02247ea3-4c0d-4a3c-8d57-02d0a2704523"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="16"/>
+				</textElement>
+				<text><![CDATA[Total :       $]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="78" y="41" width="262" height="35" uuid="d59246c3-223d-4717-9762-0a8645c00f2d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subtotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="78" y="75" width="262" height="35" uuid="dc7df40a-4ebf-4ff1-84b2-939d28530ad0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{impuesto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="78" y="110" width="262" height="35" uuid="bc93ce4c-b9c0-4f75-99a7-957b87531b7d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{instalacion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="352" y="75" width="83" height="35" forecolor="#1B2329" uuid="64442656-7448-4df0-bda6-0d096b78d7dc"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="16"/>
+				</textElement>
+				<text><![CDATA[Recibido : $]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="352" y="110" width="83" height="35" forecolor="#1B2329" uuid="3471d7cf-f1ab-4f5d-8900-a5a8530ecc1a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Segoe UI Light" size="16"/>
+				</textElement>
+				<text><![CDATA[Retorno :  $]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="435" y="75" width="120" height="35" uuid="d88d32a4-d96f-4f4e-a03b-256eedc6266e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MontoRecibo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="40" width="120" height="36" uuid="7fff5c0a-be3e-4859-b2fe-7f3e6728ca7e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="110" width="120" height="35" uuid="ac20f920-7fb6-44b7-9d91-2829d4dd5469"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MontoRetorno}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="435" y="0" width="120" height="54" uuid="11f828d2-2df3-4493-95c2-0399976cc102"/>
+				<textElement textAlignment="Right" verticalAlignment="Bottom">
+					<font fontName="Segoe UI Light" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

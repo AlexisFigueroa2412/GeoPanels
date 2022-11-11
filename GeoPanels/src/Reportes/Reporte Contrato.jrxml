@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte Contrato" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="59fb4b3f-e67c-4940-b1b8-cddceb7941ef">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="id_tipo_contrato" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select a.fecha_inicio, b.nombre_cliente, c.tipo_contrato from Contrato a, Cliente b, Tipo_contrato c where a.id_cliente = b.id_cliente and a.id_tipo_contrato = c.id_tipo_contrato and c.id_tipo_contrato = $P!{id_tipo_contrato}]]>
+	</queryString>
+	<field name="fecha_inicio" class="java.lang.String"/>
+	<field name="nombre_cliente" class="java.lang.String"/>
+	<field name="tipo_contrato" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="79" backcolor="#666666" uuid="058cd476-8140-45a8-acf5-6e642bf24829"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="157" y="39" width="244" height="40" uuid="045c5407-a3ff-4cf7-9fde-529f41ecf246"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Reporte Tipo_contrato]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="36" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<rectangle>
+				<reportElement x="382" y="41" width="83" height="20" backcolor="#666666" uuid="44481a92-c4f5-4259-b136-595e9dbd4b20"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="382" y="41" width="83" height="20" uuid="0cf5e479-e502-458d-9c7f-2c2b3e1b5ee2"/>
+				<text><![CDATA[Tipo contrato]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="131" y="41" width="58" height="20" backcolor="#666666" uuid="d1015d16-2101-41e8-9d88-a45d6d8d6b22"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="131" y="41" width="58" height="20" uuid="78dea1d9-a49e-487a-9051-420bdbedf835"/>
+				<text><![CDATA[fecha inicio]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="245" y="41" width="80" height="20" backcolor="#666666" uuid="5fba5ff9-2705-40e1-b02f-680e3adedeb4"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="245" y="41" width="80" height="20" uuid="bb2c3e3d-5dd1-4652-8e32-1bfd16388654"/>
+				<text><![CDATA[Nombre_cliente]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="131" y="0" width="100" height="20" uuid="d3e46d39-01cb-4925-91b4-40d5e86d4f2a"/>
+				<textFieldExpression><![CDATA[$F{fecha_inicio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="382" y="0" width="100" height="20" uuid="0123528e-b8da-498a-8ab5-8f152fc52a99"/>
+				<textFieldExpression><![CDATA[$F{tipo_contrato}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="245" y="0" width="100" height="20" uuid="880b2a3a-9e3d-4df9-90cb-c873b17b2c4a"/>
+				<textFieldExpression><![CDATA[$F{nombre_cliente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

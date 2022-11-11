@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Reporte_Horario" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="82365fd6-b31f-4586-b4cf-22684ea7b552">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="48"/>
+	<parameter name="id_tipo" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select a.fechayhora, b.Tipo_Mantenimiento from Mantenimiento_Programado a, Tipo_Mantenimiento b where b.id_tipo_mantenimiento = $P!{id_tipo}]]>
+	</queryString>
+	<field name="fechayhora" class="java.lang.String"/>
+	<field name="Tipo_Mantenimiento" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="79" backcolor="#666666" uuid="2a02e308-ae45-4e43-ade0-081c96535fe1"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="194" y="46" width="182" height="33" uuid="a449a6fb-5125-47e2-bc8b-a3b52940e9ce"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[Reporte_Horario]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<rectangle>
+				<reportElement x="285" y="41" width="100" height="20" backcolor="#666666" uuid="a3c906b2-497e-44d7-993a-9513eed90fb9"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="285" y="41" width="104" height="20" uuid="cb807a99-39f7-48da-87c8-8a9d1fb6ec79"/>
+				<text><![CDATA[Tipo_Mantenimiento]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="127" y="41" width="121" height="20" backcolor="#666666" uuid="34e3484b-9918-4ec0-9317-0b2dbabe0432"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="127" y="41" width="121" height="20" uuid="ee7ca2c3-644b-4618-b546-81e930780f7e"/>
+				<text><![CDATA[Horario_mantenimiento]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="285" y="0" width="120" height="20" uuid="c9d59126-d1de-4082-ba4d-5164c4e8ca48"/>
+				<textFieldExpression><![CDATA[$F{Tipo_Mantenimiento}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="127" y="0" width="100" height="20" uuid="66203e1a-0110-4c66-b222-56e2793bcd87"/>
+				<textFieldExpression><![CDATA[$F{fechayhora}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
